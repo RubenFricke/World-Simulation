@@ -15,13 +15,13 @@ function setup(){
 
 function draw(){
     background(0);
-    fill(255);
-    textSize(32);
-    for(let i = 0; i < animals.length; i++){
-        animals[i].update();
-        animals[i].display();
-        console.log('updating animal: ' + i);
-    }
+    animals.forEach(animal => {
+        animal.update();
+        animal.display();
+        if (animal.hunger <= 0){
+            animals.splice(animals.indexOf(animal), 1);
+        }
+    });
 }
 
 function populate(){

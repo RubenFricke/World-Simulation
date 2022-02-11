@@ -12,16 +12,10 @@ class Animal {
       this.x += this.xSpeed;
       this.y += this.ySpeed;
       this.hunger -= 0.01;
-      if (this.x > width || this.x < 0) {
-        this.xSpeed *= -1;
-      }
-      if (this.y > height || this.y < 0) {
-        this.ySpeed *= -1;
-      }
     }
 
     display(){
-      fill(100/255*this.hunger, 100/255*this.hunger, 100/255*this.hunger);
+      fill(map(this.hunger, 0, 100, 0, 255));
       rect(this.x, this.y, 20, 20);
     }
 }
