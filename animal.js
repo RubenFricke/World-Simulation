@@ -8,3 +8,4 @@ class Animal {
       this.hunger = hunger;
     }
 }
+
