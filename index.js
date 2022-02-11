@@ -1,4 +1,6 @@
-let animals = []
+let animals = [];
+let plantseeds = [];
+let plants = [];
 const width = window.innerWidth;
 const height = window.innerHeight;
 
@@ -13,8 +15,13 @@ function setup(){
         populate();
 }
 
+function mouseClicked(){
+    plantseeds.push(new PlantSeed(mouseX, mouseY, 0.01));
+}
+
 function draw(){
     background(0);
+    drawPlants();
     animals.forEach(animal => {
         animal.update();
         animal.display();
@@ -22,6 +29,27 @@ function draw(){
             animals.splice(animals.indexOf(animal), 1);
         }
     });
+}
+
+function drawPlants(){
+    plantseeds.forEach(seed => {
+        seed.update();
+        if(seed.germinating){
+            plantseeds.splice(plantseeds.indexOf(seed), 1);
+            plants.push(seed.getPlant());
+        }else{
+            seed.display();
+        }
+    });
+
+    plants.forEach(plant => {
+        plant.update();
+        if(!plant.exists){
+            plants.splice(plants.indexOf(plant), 1);
+        }else{
+            plant.display();
+        }
+    })
 }
 
 function populate(){
